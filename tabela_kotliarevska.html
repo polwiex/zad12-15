@@ -1,0 +1,192 @@
+<!doctype html>
+<html lang="pl">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Typy plików i ich cechy</title>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --border-red: #ff0000;
+    --header-blue: #000046;    /* bardzo ciemny granat */
+    --cell-light: #cfe7fb;     /* jasny niebieski */
+    --type-color: #ffc000;     /* złoto-pomarańczowy dla kolumny Typ pliku */
+    --desc-red: #ff7c80;       /* różowo-czerwony tekst w komórkach */
+    --video-blue: #2e74b5;     /* niebieski dla ostatniego wiersza */
+  }
+
+  /* CAŁA STRONA */
+  body {
+    background: #ffffff;
+    font-family: "Roboto", Arial, sans-serif;
+    margin: 28px;
+    color: #111;
+  }
+
+  /* CENTER + title "odcięty" nad ramką */
+  .wrap { max-width: 1060px; margin: 0 auto; position: relative; }
+  .title-wrap {
+    display: inline-block;
+    padding: 8px 18px;
+    border: 4px solid var(--border-red);
+    border-bottom: none;
+    background: #fff;
+    font-size: 20px;
+    font-weight: 700;
+    position: absolute;
+    left: 60%;
+    transform: translateX(-50%);
+    top: -28px;
+    z-index: 2;
+  }
+
+  /* zewnętrzna ramka tabeli */
+  .table-outer {
+    border: 6px solid var(--border-red);
+    margin-top: 0;
+    padding-top: 18px; /* miejsce na tytuł */
+    background: transparent;
+    overflow: hidden;
+  }
+
+  /* tabela */
+  table.typy {
+    width: 100%;
+    border-collapse: collapse;
+    table-layout: fixed;
+  }
+
+  th, td {
+    border: 3px solid var(--border-red);
+    padding: 18px 12px;
+    text-align: center;
+    vertical-align: middle;
+    font-weight: 700;
+  }
+
+  thead th {
+    background: var(--header-blue);
+    color: white;
+    font-size: 20px;
+    padding: 22px 12px;
+  }
+
+  /* komórki tbody */
+  tbody td {
+    background: var(--cell-light);
+    color: var(--desc-red);
+    font-size: 18px;
+    line-height: 1.1;
+  }
+
+  /* szerokości kolumn (ułatwia dopasowanie) */
+  table.typy th:nth-child(1), table.typy td:nth-child(1) { width: 22%; text-align: left; padding-left:18px; }
+  table.typy th:nth-child(2), table.typy td:nth-child(2) { width: 14%; }
+  table.typy th:nth-child(3), table.typy td:nth-child(3) { width: 28%; }
+  table.typy th:nth-child(4), table.typy td:nth-child(4) { width: 22%; }
+  table.typy th:nth-child(5), table.typy td:nth-child(5) { width: 14%; }
+
+  /* kolumna Typ pliku - złoty kolor tekstu i pogrubienie, wyrównanie left z padding */
+  .col-type {
+    color: var(--type-color);
+    font-weight: 900;
+    font-size: 20px;
+  }
+
+  /* ostatni wiersz (video) - ciemniejszy niebieski pasek */
+  .video-row td {
+    background: var(--video-blue) !important;
+    color: #fff !important;
+    font-size: 20px;
+  }
+
+  /* link i źródło pod tabelą */
+  .source {
+    margin-top: 18px;
+    font-size: 16px;
+    font-weight: 400;
+  }
+  .back {
+    display:block;
+    margin-top:8px;
+    text-decoration: none;
+    color: #4b148c;
+    font-weight:700;
+    letter-spacing:2px;
+  }
+
+  /* Drobne responsywne poprawki mobilne */
+  @media (max-width: 880px) {
+    .title-wrap { left: 50%; top: -34px; font-size:18px; padding:6px 12px; }
+    th, td { padding: 12px 8px; font-size:14px; }
+    tbody td { font-size:14px; }
+    .col-type { font-size:16px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <div class="title-wrap">Typy plików i ich cechy</div>
+
+  <div class="table-outer">
+    <table class="typy" role="table" aria-label="Tabela typów plików">
+      <thead>
+        <tr>
+          <th>Typ pliku</th>
+          <th>Rozszerzenie</th>
+          <th>Opis</th>
+          <th>Program otwierający</th>
+          <th>Rodzaj pliku</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr>
+          <td class="col-type">PDF</td>
+          <td>.pdf</td>
+          <td>Format dokumentu</td>
+          <td>Adobe Reader</td>
+          <td>Dokument</td>
+        </tr>
+
+        <tr>
+          <td class="col-type">Obraz bitmapowy</td>
+          <td>.bmp</td>
+          <td>Plik graficzny, bez kompresji</td>
+          <td>Paint, Photoshop</td>
+          <td>Obraz</td>
+        </tr>
+
+        <tr>
+          <td class="col-type">Word</td>
+          <td>.docx</td>
+          <td>Dokument tekstowy</td>
+          <td>Microsoft Word</td>
+          <td>Dokument</td>
+        </tr>
+
+        <tr>
+          <td class="col-type">Archiwum ZIP</td>
+          <td>.zip</td>
+          <td>Skompresowany folder</td>
+          <td>WinRAR, 7-Zip</td>
+          <td>Archiwum</td>
+        </tr>
+
+        <tr class="video-row">
+          <td class="col-type">Video</td>
+          <td>.mp4</td>
+          <td>Plik wideo</td>
+          <td>VLC Player</td>
+          <td>Multimedia</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="source">Źródło: własne</div>
+ </div>
+<a href="index_kotliarevska.html">W R Ó Ć</a>
+</body>
+</html>
